@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        Log.d(DEBUG_TAG, "Intent: " + intent);
         if (intent != null && NfcAdapter.ACTION_NDEF_DISCOVERED.equals(intent.getAction())) {
             Parcelable[] rawMessages = intent.getParcelableArrayExtra(NfcAdapter.EXTRA_NDEF_MESSAGES);
             if(rawMessages != null) {
@@ -116,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     messages[i] = (NdefMessage) rawMessages[i];
                 }
                 Log.d(DEBUG_TAG, "MEssages from NFC: " + messages.toString());
+                txtInfo.setText(messages.toString());
                 // Process the message array
             }
         }
